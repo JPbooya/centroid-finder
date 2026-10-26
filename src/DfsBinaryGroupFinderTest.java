@@ -67,4 +67,19 @@ public void testAllZeros() {
 
     assertTrue(groups.isEmpty());
 }
+@Test
+public void testSinglePixelGroup() {
+    DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+    int[][] image = {
+        {0, 0, 0},
+        {0, 1, 0},
+        {0, 0, 0}
+    };
+
+    List<Group> groups = finder.findConnectedGroups(image);
+
+    assertEquals(1, groups.size());
+    assertEquals(new Group(1, new Coordinate(1, 1)), groups.get(0));
+}
 }
