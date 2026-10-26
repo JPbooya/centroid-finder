@@ -45,6 +45,16 @@ public class DfsBinaryGroupFinder implements BinaryGroupFinder {
         if (image.length == 0) {
             throw new IllegalArgumentException("Image cannot be empty");
         }
+        // Check each row
+        for (int[] row : image) {
+            if (row == null) {
+                throw new NullPointerException("Image row cannot be null");
+            }
+
+            if (row.length == 0) {
+                throw new IllegalArgumentException("Image row cannot be empty");
+            }
+        }
         List<Group> groups = new ArrayList<>();
         boolean[][] visited = new boolean[image.length][image[0].length];
         for (int r = 0; r < image.length; r++) {
