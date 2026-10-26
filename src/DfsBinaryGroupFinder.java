@@ -72,7 +72,7 @@ public class DfsBinaryGroupFinder implements BinaryGroupFinder {
                 }
             }
         }
-        Collections.sort(groups);
+        groups.sort(Collections.reverseOrder());
         return groups;
     }
 
