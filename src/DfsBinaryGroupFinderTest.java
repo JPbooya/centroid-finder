@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 public class DfsBinaryGroupFinderTest {
 
   @Test
@@ -50,5 +52,19 @@ public void testEmptyRow() {
     assertThrows(IllegalArgumentException.class, () -> {
         finder.findConnectedGroups(image);
     });
+}
+@Test
+public void testAllZeros() {
+    DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+    int[][] image = {
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+
+    List<Group> groups = finder.findConnectedGroups(image);
+
+    assertTrue(groups.isEmpty());
 }
 }
