@@ -26,4 +26,15 @@ public class DfsBinaryGroupFinderTest {
       finder.findConnectedGroups(image);
     });
   }
+
+  @Test
+  public void testEmptyImage() {
+    DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+    int[][] image = {};
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      finder.findConnectedGroups(image);
+    });
+  }
 }
