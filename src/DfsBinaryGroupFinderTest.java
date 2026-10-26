@@ -82,4 +82,19 @@ public void testMultipleConnectedPixels() {
     assertEquals(1, groups.size());
     assertEquals(new Group(4, new Coordinate(0, 0)), groups.get(0));
 }
+@Test
+public void testCentroidCalculation() {
+    DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+    int[][] image = {
+        {0, 1, 0, 0},
+        {0, 1, 1, 0},
+        {0, 0, 1, 0}
+    };
+
+    List<Group> groups = finder.findConnectedGroups(image);
+
+    assertEquals(1, groups.size());
+    assertEquals(new Group(4, new Coordinate(1, 1)), groups.get(0));
+}
 }
