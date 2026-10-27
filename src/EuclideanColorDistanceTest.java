@@ -29,4 +29,14 @@ public class EuclideanColorDistanceTest {
 
     assertEquals(Math.sqrt(130050), result, 0.000001);
   }
+
+  @Test
+  public void testColorDistanceSymmetry() {
+    EuclideanColorDistance finder = new EuclideanColorDistance();
+
+    double distanceAB = finder.distance(0xFF8040, 0x123456);
+    double distanceBA = finder.distance(0x123456, 0xFF8040);
+
+    assertEquals(distanceAB, distanceBA, 0.000001);
+  }
 }
