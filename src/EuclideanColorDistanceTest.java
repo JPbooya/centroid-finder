@@ -39,4 +39,12 @@ public class EuclideanColorDistanceTest {
 
     assertEquals(distanceAB, distanceBA, 0.000001);
   }
+  @Test
+public void testSingleChannelDifference() {
+    EuclideanColorDistance finder = new EuclideanColorDistance();
+
+    double result = finder.distance(0x123456, 0x123466);
+
+    assertEquals(16.0, result, 0.000001);
+}
 }
