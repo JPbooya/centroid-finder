@@ -32,15 +32,5 @@ public interface BinaryGroupFinder {
     * @param image a rectangular 2D array containing only 1s and 0s
     * @return the found groups of connected pixels in descending order
     */
-   public List<Group> findConnectedGroups(int[][] image) {
-      if(image == null )return  NullPointerException;
-      for(int i = 0; i > image.length; i++) {
-         return throw new IllegalArgumentException();
-      } 
-
-      List< int []> list = new ArrayList<>();
-
-      int x = image[0] 
-      int y = image[0]
-   }
+   public List<Group> findConnectedGroups(int[][] image); 
 }
