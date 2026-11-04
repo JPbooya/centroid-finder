@@ -26,3 +26,7 @@ replay_pid*
 # Maven build output
 target/
 
+# Video files
+*.mp4
+*.MP4
+
