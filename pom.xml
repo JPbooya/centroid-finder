@@ -21,7 +21,7 @@
       <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
-    
+
   <!-- Source: https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
 <dependency>
     <groupId>org.bytedeco</groupId>
@@ -46,7 +46,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>ImageSummaryApp</mainClass>
+          <mainClass>${exec.mainClass}</mainClass>
         </configuration>
       </plugin>
     </plugins>
