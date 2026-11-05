@@ -38,6 +38,10 @@ public class JavaCvFrameSource implements FrameSource {
     return new VideoFrame(image, seconds);
   }
 
+  public double frameRate() {
+    return grabber.getVideoFrameRate();
+  }
+
   @Override
   public void close() throws Exception {
     try {

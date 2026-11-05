@@ -30,3 +30,6 @@ target/
 *.mp4
 *.MP4
 
+# VideoDebugApp output
+debug-output/
+
