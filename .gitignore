@@ -33,3 +33,5 @@ target/
 # VideoDebugApp output
 debug-output/
 
+# JAR tracking output
+tracking.csv
