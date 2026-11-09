@@ -42,7 +42,7 @@ Before anyone writes a route, get the folders, settings and tools in place.
 Planned server structure: an entry file that starts the app, one route file per endpoint group, a jobs module that talks to the database, and a runner module that starts Java and records the outcome.
 
 ## Architecture
-
+![alt text](<Screenshot 2026-11-09 at 10.51.50 AM.png>)
 
 Each route has one job. Only the runner talks to Java, and only the jobs module talks to SQLite, so a route never touches the database or the jar directly.
 
