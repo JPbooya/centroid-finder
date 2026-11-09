@@ -1,6 +1,9 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class DfsBinaryGroupFinder implements BinaryGroupFinder {
     /**
@@ -76,22 +79,45 @@ public class DfsBinaryGroupFinder implements BinaryGroupFinder {
         return groups;
     }
 
-    private void dfs(int[][] image, int r, int c, boolean[][] visited, int[] totals) {
-        if (r < 0 || r >= image.length || c < 0 || c >= image[0].length
-                || visited[r][c] || image[r][c] != 1) {
-            return;
+    private void dfs(
+            int[][] image, int r, int c,
+            boolean[][] visited, int[] totals) {
 
-        }
+        Deque<Coordinate> stack = new ArrayDeque<>();
+
+        stack.push(new Coordinate(c, r));
         visited[r][c] = true;
 
-        totals[0]++;
-        totals[1] += c;
-        totals[2] += r;
+        int[][] directions = {
+                { 0, 1 }, // DOWN
+                { 0, -1 }, // UP
+                { 1, 0 }, // RIGHT
+                { -1, 0 } // LEFT
+        };
 
-        dfs(image, r + 1, c, visited, totals); // DOWN
-        dfs(image, r - 1, c, visited, totals); // UP
-        dfs(image, r, c + 1, visited, totals); // RIGHT
-        dfs(image, r, c - 1, visited, totals); // LEFT
+        while (!stack.isEmpty()) {
+            Coordinate current = stack.pop();
 
+            int x = current.x();
+            int y = current.y();
+
+            totals[0]++;
+            totals[1] += x;
+            totals[2] += y;
+
+            for (int[] direction : directions) {
+                int nextX = x + direction[0];
+                int nextY = y + direction[1];
+
+                if (nextY >= 0 && nextY < image.length
+                        && nextX >= 0 && nextX < image[0].length
+                        && !visited[nextY][nextX]
+                        && image[nextY][nextX] == 1) {
+
+                    visited[nextY][nextX] = true;
+                    stack.push(new Coordinate(nextX, nextY));
+                }
+            }
+        }
     }
 }
