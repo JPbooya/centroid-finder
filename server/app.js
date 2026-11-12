@@ -1,6 +1,7 @@
 const express = require('express');
 const config = require('./config');
 const videosRouter = require('./routes/videos');
+const thumbnailRouter = require('./routes/thumbnail');
 
 const app = express();
 
@@ -10,5 +11,6 @@ app.use('/results', express.static(config.RESULTS_DIR));
 
 // API routes
 app.use(videosRouter);
+app.use(thumbnailRouter);
 
 module.exports = app;
