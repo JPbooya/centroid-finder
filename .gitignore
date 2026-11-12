@@ -37,3 +37,11 @@ debug-output/
 tracking.csv
 # Node
 node_modules/
+
+# Server runtime folders and data
+videos/
+results/
+*.db
+
+# macOS
+.DS_Store
