@@ -11,5 +11,7 @@ module.exports = {
   VIDEO_DIR: fromRoot(process.env.VIDEO_DIR || 'videos'),
   RESULTS_DIR: fromRoot(process.env.RESULTS_DIR || 'results'),
   JAR_PATH: fromRoot(process.env.JAR_PATH || 'processor/target/videoprocessor.jar'),
+  // ':memory:' is a special SQLite name for a throwaway in-memory database (used by tests).
+  DB_PATH: process.env.DB_PATH === ':memory:' ? ':memory:' : fromRoot(process.env.DB_PATH || 'jobs.db'),
   PORT: Number(process.env.PORT) || 3000,
 };

@@ -54,4 +54,27 @@ router.post('/process/:filename', (req, res) => {
   }
 });
 
+// GET /process/:jobId/status -> { status } | { status, result } | { status, error }
+router.get('/process/:jobId/status', (req, res) => {
+  try {
+    const job = jobs.getJob(req.params.jobId);
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job ID not found' });
+    }
+
+    // Only include the field that matches the status, as the spec shows.
+    if (job.status === 'done') {
+      return res.json({ status: 'done', result: job.result });
+    }
+    if (job.status === 'error') {
+      return res.json({ status: 'error', error: job.error });
+    }
+    res.json({ status: 'processing' });
+  } catch (err) {
+    console.error('Error fetching job status:', err.message);
+    res.status(500).json({ error: 'Error fetching job status' });
+  }
+});
+
 module.exports = router;
