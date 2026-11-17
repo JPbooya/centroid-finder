@@ -127,6 +127,15 @@ Unit tests cover the logic without Java or ffmpeg; Postman covers the real end-t
 | Same, after Java finishes | `done` with `result`; the CSV opens |
 | `GET /process/not-a-real-id/status` | 404 |
 
+## running the project
+- Build the processor jar: cd processor && mvn package, which creates target/videoprocessor.jar.
+- Install the server packages: cd server && npm install.
+- Put a video in videos/ and check .env.
+- Start the server with npm start.
+- POST /process/<video>?targetColor=ff0000&threshold=120, then poll /process/<jobId>/status until it says done.
+- Open the CSV at /results/<video>.csv.
+
+
 ## Open questions
 
 - [ ] Name results `<filename>.csv` (spec) or `<filename>-<jobId>.csv` (no overwrites)?
