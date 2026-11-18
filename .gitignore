@@ -38,6 +38,9 @@ tracking.csv
 # Node
 node_modules/
 
+# Front-end build output
+client/dist/
+
 # Server runtime folders and data
 videos/
 results/
