@@ -138,7 +138,7 @@ Unit tests cover the logic without Java or ffmpeg; Postman covers the real end-t
 
 ## Open questions
 
-- [ ] Name results `<filename>.csv` (spec) or `<filename>-<jobId>.csv` (no overwrites)?
+- [x] Name results `<filename>.csv` (spec) or `<filename>-<jobId>.csv` (no overwrites)? **Decided: `<filename>.csv`, matching the spec. Rerunning a video overwrites its previous CSV.**
 - [ ] Return 404 instead of 500 when a video doesn't exist, or stick strictly to the spec?
 - [ ] When the server restarts, should jobs still marked processing be set to error?
 - [ ] Who owns each phase?
