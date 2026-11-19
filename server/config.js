@@ -14,4 +14,6 @@ module.exports = {
   // ':memory:' is a special SQLite name for a throwaway in-memory database (used by tests).
   DB_PATH: process.env.DB_PATH === ':memory:' ? ':memory:' : fromRoot(process.env.DB_PATH || 'jobs.db'),
   PORT: Number(process.env.PORT) || 3000,
+  // Largest video accepted by POST /api/videos (MAX_UPLOAD_MB in .env, default 500).
+  MAX_UPLOAD_BYTES: (Number(process.env.MAX_UPLOAD_MB) || 500) * 1024 * 1024,
 };
