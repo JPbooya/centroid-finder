@@ -4,9 +4,6 @@ const path = require('path');
 const config = require('./config');
 const jobs = require('./jobs');
 
-// The Java app prints this line only when it finished successfully.
-const SUCCESS_MESSAGE = 'Centroid tracking saved to';
-
 // Starts the Java processor for a job and returns immediately.
 // When Java exits, the job is marked 'done' or 'error'.
 function runJob({ id, filename, targetColor, threshold }) {
@@ -32,22 +29,16 @@ function runJob({ id, filename, targetColor, threshold }) {
     videoPath, csvPath, targetColor, String(threshold),
   ]);
 
-  let output = '';
   let errorOutput = '';
-  java.stdout.on('data', (chunk) => { output += chunk; });
   java.stderr.on('data', (chunk) => { errorOutput += chunk; });
 
   // 'error' fires if Java couldn't be started (e.g. java isn't installed).
   java.on('error', (err) => markError(err.message));
 
   java.on('close', (code) => {
-    // Our Java app exits with code 0 even when it fails, so we also require
-    // its success message and the CSV file before calling the job done.
-    const succeeded = code === 0
-      && output.includes(SUCCESS_MESSAGE)
-      && fs.existsSync(csvPath);
-
-    if (succeeded) {
+    // The processor exits non-zero on failure. The CSV check guards against
+    // a run that exited cleanly but never wrote its output.
+    if (code === 0 && fs.existsSync(csvPath)) {
       console.log(`Job ${id} done: ${csvName}`);
       jobs.updateJob(id, { status: 'done', result: `/results/${csvName}` });
     } else {

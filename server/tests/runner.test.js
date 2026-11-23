@@ -10,7 +10,6 @@ const config = require('../config');
 const jobs = require('../jobs');
 const { runJob } = require('../runner');
 
-const SUCCESS_LINE = 'Centroid tracking saved to somewhere\n';
 let jobCount = 0;
 
 // Creates a job in the database the way the POST route does, and returns it.
@@ -68,7 +67,6 @@ describe('runJob', () => {
     const job = newJob();
     const java = start(job);
 
-    java.stdout.emit('data', Buffer.from(SUCCESS_LINE));
     fs.writeFileSync(csvPathFor(job.filename), 'frame,x,y\n');
     java.emit('close', 0);
 
@@ -86,23 +84,22 @@ describe('runJob', () => {
 
     expect(fs.existsSync(csvPathFor(job.filename))).toBe(false);
 
-    // Java says it succeeded but never wrote a new CSV.
-    java.stdout.emit('data', Buffer.from(SUCCESS_LINE));
+    // Java exits cleanly but never wrote a new CSV.
     java.emit('close', 0);
 
     expect(jobs.getJob(job.id).status).toBe('error');
   });
 
-  test('marks an error when Java exits 0 without its success message', () => {
+  test('marks an error when Java exits non-zero, even if a CSV was written', () => {
     const job = newJob();
     const java = start(job);
 
     fs.writeFileSync(csvPathFor(job.filename), 'frame,x,y\n');
-    java.emit('close', 0);
+    java.emit('close', 1);
 
     expect(jobs.getJob(job.id)).toMatchObject({
       status: 'error',
-      error: 'Error processing video: processor exited with code 0',
+      error: 'Error processing video: processor exited with code 1',
     });
   });
 
