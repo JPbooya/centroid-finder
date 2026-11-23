@@ -56,6 +56,63 @@ public class DfsBinaryGroupFinderTest {
     }
 
     @Test
+    public void testRaggedRowShorterThanFirst() {
+        DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+        int[][] image = {
+                { 1, 0, 1 },
+                { 0, 1 },
+                { 0, 1, 0 }
+        };
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            finder.findConnectedGroups(image);
+        });
+    }
+
+    @Test
+    public void testRaggedRowLongerThanFirst() {
+        DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+        int[][] image = {
+                { 1, 0 },
+                { 0, 1, 1 }
+        };
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            finder.findConnectedGroups(image);
+        });
+    }
+
+    @Test
+    public void testValueGreaterThanOne() {
+        DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+        int[][] image = {
+                { 1, 0 },
+                { 0, 2 }
+        };
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            finder.findConnectedGroups(image);
+        });
+    }
+
+    @Test
+    public void testNegativeValue() {
+        DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
+
+        int[][] image = {
+                { 1, -1 },
+                { 0, 1 }
+        };
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            finder.findConnectedGroups(image);
+        });
+    }
+
+    @Test
     public void testAllZeros() {
         DfsBinaryGroupFinder finder = new DfsBinaryGroupFinder();
 
