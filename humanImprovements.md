@@ -12,7 +12,9 @@ we try to reduce code in some of our functions. (Workspace.jsx and App.jsx)
 # Documentation
 - Some classes and methods in main needs java doc/explination.
 - Front-end side also needs documentation on some of its files.
-# Improving performance 
+# Improving performance
+improve the installation process so that anyone forking and clone as the able to run this without having to install new package
+
 
 # Hardening security 
 - Delete .env from our github repo.
