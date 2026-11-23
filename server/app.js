@@ -16,8 +16,4 @@ app.use(videosRouter);
 app.use(thumbnailRouter);
 app.use(processRouter);
 
-// The built React front end (cd client && npm run build). In development,
-// the Vite dev server serves it instead and proxies API calls here.
-app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
-
 module.exports = app;
