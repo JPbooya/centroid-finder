@@ -5,7 +5,7 @@ public class VideoSummaryApp {
       System.err.println(
           "Usage: java -jar videoprocessor.jar "
               + "<inputPath> <outputCsv> <targetColor> <threshold>");
-      return;
+      System.exit(1);
     }
 
     String inputPath = args[0];
@@ -14,7 +14,7 @@ public class VideoSummaryApp {
     if (!args[2].matches("[0-9a-fA-F]{6}")) {
       System.err.println(
           "Target color must contain six hex digits, such as FF0000.");
-      return;
+      System.exit(1);
     }
 
     int targetColor = Integer.parseInt(args[2], 16);
@@ -24,12 +24,13 @@ public class VideoSummaryApp {
       threshold = Integer.parseInt(args[3]);
     } catch (NumberFormatException e) {
       System.err.println("Threshold must be an integer.");
-      return;
+      System.exit(1);
+      return; // Never reached, but tells the compiler threshold is set below.
     }
 
     if (threshold < 0) {
       System.err.println("Threshold must be nonnegative.");
-      return;
+      System.exit(1);
     }
 
     ColorDistanceFinder distanceFinder = new EuclideanColorDistance();
@@ -50,7 +51,7 @@ public class VideoSummaryApp {
     } catch (Exception e) {
       System.err.println("Video processing failed: " + e.getMessage());
       e.printStackTrace();
-      return;
+      System.exit(1);
     }
 
     System.out.println("Centroid tracking saved to " + outputCsv);
