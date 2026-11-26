@@ -93,4 +93,4 @@ Then open <http://localhost:5173>.
 
 # Project Shine Ideas
 - Clearer and user friendly error messages
-- 
+- Process more than one video at a time
