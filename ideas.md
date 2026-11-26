@@ -12,3 +12,6 @@
 - Have a estimated time proccess feature 
 
 - Have a ability to save old csv tracked videos 
+
+- Have the ability to crop/edit the video before you process the video
+
