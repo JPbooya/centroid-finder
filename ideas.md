@@ -6,3 +6,5 @@
 - Add a live progress bar that replaces an ordinary loading when processing the video
 
 - Have the abilty to track live vidoes 
+
+- Have the abilty to process multiple vidoes 
