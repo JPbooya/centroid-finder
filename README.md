@@ -6,6 +6,10 @@ become 1, everything else 0), finds the connected groups of 1s, and reports the
 centroid of the largest group per frame. The original use case is tracking
 salamanders.
 
+![Demo: picking the salamander's color, tuning the threshold, and processing the video](docs/demo.gif)
+
+*The web app (front end + this server) at 2× speed.*
+
 The project has three parts:
 
 | Part | Folder / repo | What it does |
