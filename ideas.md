@@ -8,3 +8,5 @@
 - Have the abilty to track live vidoes 
 
 - Have the abilty to process multiple vidoes 
+
+- Have a estimated time proccess feature 
