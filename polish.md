@@ -5,6 +5,10 @@ color and a threshold. It binarizes each frame (pixels close to the target color
 become 1, everything else 0), finds the connected groups of 1s, and reports the
 centroid of the largest group per frame. 
 
+![Demo: picking the salamander's color, tuning the threshold, and processing the video](docs/demo.gif)
+
+*The web app (front end + this server) at 2× speed.*
+
 The project has three parts:
 
 | Processor | [`processor/`](processor/) | Java app that does the image and video analysis and packages into one runnable JAR. |
@@ -87,3 +91,6 @@ npm run dev
 
 Then open <http://localhost:5173>.
 
+# Project Shine Ideas
+- Clearer and user friendly error messages
+- 
